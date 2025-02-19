@@ -6,6 +6,8 @@
 set -e
 
 echo "Installing root-level dependencies..."
+npm install -g npm@latest
+npm install -g yarn@latest
 npm install
 
 echo "Installing Core extension dependencies..."

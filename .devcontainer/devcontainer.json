@@ -1,0 +1,9 @@
+{
+    "name": "Node.js",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+    "forwardPorts": [5173,6011,6420,7984,9222],
+    "postCreateCommand": "cd ${containerWorkspaceFolder} && chmod +x scripts/install-dependencies.sh && ./scripts/install-dependencies.sh"
+    // Configure tool-specific properties.
+    // "customizations": {},
+    // "remoteUser": "root"
+}

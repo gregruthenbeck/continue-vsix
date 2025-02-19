@@ -5,10 +5,14 @@ import HttpSlashCommand from "./http";
 import OnboardSlashCommand from "./onboard";
 import ReviewMessageCommand from "./review";
 import ShareSlashCommand from "./share";
+import GregSlashCommand from "./greg";
+import MladSlashCommand from "./mlad";
 
 export default [
   DraftIssueCommand,
   ShareSlashCommand,
+  GregSlashCommand,
+  MladSlashCommand,
   GenerateTerminalCommand,
   HttpSlashCommand,
   CommitMessageCommand,

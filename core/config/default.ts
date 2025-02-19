@@ -54,6 +54,14 @@ export const defaultContextProvidersJetBrains: ContextProviderWithParams[] = [
 
 export const defaultSlashCommandsVscode: SlashCommandDescription[] = [
   {
+    name: "mlad",
+    description: "Export the current chat session to MLAD format markdown",
+  },
+  {
+    name: "greg",
+    description: "Custom export the current chat session to markdown",
+  },
+  {
     name: "share",
     description: "Export the current chat session to markdown",
   },
