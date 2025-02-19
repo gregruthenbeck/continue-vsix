@@ -32,7 +32,8 @@ function reformatCodeBlocks(msgText: string): string {
     codeBlockFenceRegex,
     (match, metadata, filename, extension) => {
       const lang = languageForFilepath(filename);
-      return `\`\`\`${extension}\n${lang.singleLineComment} ${metadata}\n`;
+      // Use replace regex to remove leading "// " from singleLineComment
+      return `\`\`\`${lang.singleLineComment?.replace(/^\/\/\s*/, "").trimStart()} ${metadata}\n`;
     },
   );
   // Appease the markdown linter
@@ -111,13 +112,13 @@ const MladSlashCommand: SlashCommand = {
         content += `<details><summary>Priming Prompt</summary>\n\n#### ${
           msg.role === "user" ? "_User_" : "_Assistant_"
         }\n\n${msgText}\n\n</details>`;
+      } else if(msgText.trim() === "/mlad") {
+        continue;
       } else {
-        content += msg.role === "user" 
-          ? `\n\n::: ai\nversions:\n- prompt: |\n${msgText}`
-          : `\nmodel: claude-3-5-sonnet\nresponse: |\n${msgText}`;
+        content += msg.role === "user"
+          ? `\n\n::: ai\nversions:\n  - prompt: |\n      ${msgText.replace(/^(?:      \n)*      (?!\s)/m, "")}`
+          : `\n    model: ${modelName}\n    response: |\n${msgText}\n:::`;
       }
-
-      msgText += ":::\n\n";
     }
 
     let outputDir: string = params?.outputDir ?? getContinueGlobalPath();
